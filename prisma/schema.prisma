@@ -22,8 +22,24 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
- 
+  jobs Job[] @relation("PostedJobs")
+  applications application[]
+
   @@map("users")
+}
+
+model Job {
+  id String @id @default(cuid())
+  title String 
+  company String
+  location String
+  description String @db.Text
+  salary Int?
+  postedAt DateTime @default(now())
+  postedBy User @relation("PostedJobs", fields: [postedById], references: [id])
+  postedById String
+
+  applications application[]
 }
 
 model Account {
@@ -64,4 +80,18 @@ model VerificationToken {
  
   @@unique([identifier, token])
   @@map("verification_tokens")
+}
+
+model application {
+  id String @id @default(cuid())
+  jobId String 
+  userId String
+  status String @default("PENDING")
+  appliedAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+  job Job @relation(fields: [jobId], references: [id])
+
+  @@unique([jobId, userId]) 
+
 }
