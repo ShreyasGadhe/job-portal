@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
+
+// import Image from "next/image";
 
 const Navbar = () => {
   return (
@@ -9,13 +10,13 @@ const Navbar = () => {
         <div>
           <div>
             <Link href="/">
-              <Image
-                src="/logo.png"
-                alt="job board logo"
-                height={40}
-                width={40}
-              />
+              <h1 className="chillax text-3xl p-4">JOBHUNT</h1>
             </Link>
+          </div>
+          <div>
+            <Link href={"/jobs"}>Browse Jobs</Link>
+            <Link href={"/jobs/post"}>Post a Job</Link>
+            <Link href={"/dashboard"}>Dashboard</Link>
           </div>
         </div>
       </div>

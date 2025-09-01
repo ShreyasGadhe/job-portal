@@ -25,10 +25,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=chillax@600&display=swap"
+          rel="stylesheet"
+        ></link>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="min-h-screen bg-gray-500">
+        <div className="min-h-screen bg-gray-700 ">
           <Navbar />
           <main className="container mx-auto px-4 py-8">{children}</main>
         </div>
